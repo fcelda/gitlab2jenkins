@@ -1,0 +1,33 @@
+!!! 5
+%html
+  %head
+    %meta(charset="utf-8")
+    %meta(name="viewport" content="width=device-width, initial-scale=1.0")
+    %title gitlab2jenkins
+    %link(href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css" rel="stylesheet")
+    %script(src="//code.jquery.com/jquery-1.10.1.min.js")
+    %script(src="//netdna.bootstrapcdn.com/bootstrap/3.0.2/js/bootstrap.min.js")
+  %body
+
+    -# Navigation
+
+    .navbar.navbar-default.navbar-static-top(role="navigation")
+      .container
+        .navbar-header
+          %button.navbar-toggle(type="button" data-toggle="collapse" data-target=".navbar-collapse")
+            %span.sr-only Toggle navigation
+            %span.icon-bar
+            %span.icon-bar
+            %span.icon-bar
+          %a.navbar-brand(href="/") gitlab2jenkins
+        .navbar-collapse.collapse
+          %ul.nav.navbar-nav
+            %li
+              %a(href="#{settings.gitlab_url}") Gitlab
+            %li
+              %a(href="#{settings.jenkins_url}") Jenkins
+
+    -# Content
+
+    .container
+      = yield

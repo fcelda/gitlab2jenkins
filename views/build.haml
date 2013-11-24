@@ -1,0 +1,43 @@
+%ol.breadcrumb
+  %li
+    %a(href="/") Projects
+  %li
+    %a(href="/projects/#{job.id}")=job.title
+  %li.active
+    =commit
+
+%table.table.table-hover.table-bordered
+  %tr
+    %th Commit
+    %td <code>#{commit}</code>
+  %tr
+    %th Branch
+    %td <code>#{branch}</code>
+  %tr
+    %th Status
+    %td
+      - case status
+      - when "success"
+        %span.label.label-success=status
+      - when "failed"
+        %span.label.label-danger=status
+      - when "canceled"
+        %span.label.label-default=status
+      - else
+        =status
+
+%table.table
+  %thead
+    %tr
+      %th Result
+      %th Jenkins task
+      %th Date
+  %tbody
+  - builds.each do |b|
+    %tr
+      %td
+        = b.status || "running"
+      %td
+        %a(href="#{settings.jenkins_url}/job/#{b.job.name}/#{b.build}") #{b.build}
+      %td
+        #{b.created_at}

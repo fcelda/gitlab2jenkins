@@ -1,0 +1,14 @@
+require_relative 'lib/app_config'
+
+if ENV.include? 'OPENSHIFT_APP_UUID'
+  db_url = ENV["OPENSHIFT_MYSQL_DB_URL"].sub(/^mysql:/, "mysql2:")
+  db_url = File.join db_url, ENV["OPENSHIFT_APP_NAME"]
+else
+  db_url = "mysql2://gitlab2jenkins:password@localhost/gitlab2jenkins"
+end
+
+CONFIG = AppConfig.new(
+  "https://gitlab.labs.nic.cz",
+  "https://jenkins.labs.nic.cz",
+  db_url
+)

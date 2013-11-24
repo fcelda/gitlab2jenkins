@@ -1,0 +1,14 @@
+%ol.breadcrumb
+  %li.active Projects
+
+- if jobs.empty?
+  .alert.alert-warning
+    %strong No projects are registered!
+    Take a look into gitlab2jenkins documentation on how to add a project.
+
+- else
+  %ul
+    - jobs.each do |job|
+      %li
+        %a(href="/projects/#{job.id}")
+          = job.title

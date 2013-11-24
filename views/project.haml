@@ -1,0 +1,21 @@
+%ol.breadcrumb
+  %li
+    %a(href="/") Projects
+  %li.active
+    =job.title
+
+%table.table.table-hover
+  %thead
+    %tr
+      %th Status
+      %th Commit
+      %th Branch
+      %th Date
+  %tbody
+    - builds.each do |build|
+      %tr
+        %td=build.status
+        %td
+          %a(href="/projects/#{build.job_id}/builds/#{build.commit}")=build.commit
+        %td=build.branch
+        %td=build.created_at
