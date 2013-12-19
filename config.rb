@@ -8,7 +8,7 @@ else
 end
 
 CONFIG = AppConfig.new(
-  "https://gitlab.labs.nic.cz",
-  "https://jenkins.labs.nic.cz",
+  "https://gitlab.example.com",
+  "https://jenkins.example.com",
   db_url
 )
