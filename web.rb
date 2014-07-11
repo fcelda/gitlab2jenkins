@@ -84,7 +84,7 @@ get '/projects/:job_id/builds/:commit/status.json' do
 
   if commit.status.nil?
     status = "running"
-  elsif ["success", "failed"].include? commit.status
+  elsif ["success", "failed", "running"].include? commit.status
     status = commit.status
   else
     status = "failed"
