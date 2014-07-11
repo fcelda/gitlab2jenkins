@@ -59,7 +59,7 @@ class JenkinsConnector
   def extract_build_info(data)
     result = {
       :build => data["number"],
-      :status => build_status_from_api(data["result"]),
+      :status => build_status_from_api(data),
       :created_at => nil,
       :commit => nil,
       :branch => nil
@@ -104,7 +104,9 @@ class JenkinsConnector
     result
   end
 
-  def build_status_from_api(api_string)
+  def build_status_from_api(build)
+    return "running" if build["building"]
+    api_string = build["result"]
     if api_string.nil?
       nil
     else
@@ -112,7 +114,8 @@ class JenkinsConnector
         when "success" then "success"
         when "aborted" then "canceled"
         when "running" then "running"
-        else "failed"
+        when "failure" then "failed"
+        else nil
       end
     end
   end
