@@ -67,7 +67,7 @@ end
 
 # API calls
 
-get '/projects/:job_id/builds/:commit/status.json' do
+get '/projects/:job_id/commits/:commit/status.json' do
   job_id = params[:job_id].to_i
   commit = params[:commit]
   token = request.params["token"]
@@ -93,6 +93,11 @@ get '/projects/:job_id/builds/:commit/status.json' do
   logger.info("returned status for %s is %s" % [commit, status])
 
   { "status" => status }.to_json
+end
+
+# old version compatibility
+get '/projects/:job_id/builds/:commit/status.json' do
+  call env.merge("PATH_INFO" => request.path_info.sub('/builds/', '/commits/'))
 end
 
 post '/projects/:job_id/build' do
