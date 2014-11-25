@@ -95,11 +95,6 @@ get '/projects/:job_id/commits/:commit/status.json' do
   { "status" => status }.to_json
 end
 
-# old version compatibility
-get '/projects/:job_id/builds/:commit/status.json' do
-  call env.merge("PATH_INFO" => request.path_info.sub('/builds/', '/commits/'))
-end
-
 post '/projects/:job_id/build' do
   job_id = params[:job_id].to_i
   token = request.params["token"]
