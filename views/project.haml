@@ -16,6 +16,6 @@
       %tr
         %td=build.status
         %td
-          %a(href="/projects/#{build.job_id}/builds/#{build.commit}")=build.commit
+          %a(href="/projects/#{build.job_id}/commits/#{build.commit}")=build.commit
         %td=build.branch
         %td=build.created_at

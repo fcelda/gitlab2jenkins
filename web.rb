@@ -27,7 +27,7 @@ get '/projects/:job_id' do
   haml :project, locals: { job: job, builds: job.builds_dataset.reverse_order(:created_at).limit(30).all }
 end
 
-get '/projects/:job_id/builds/:commit' do
+get '/projects/:job_id/commits/:commit' do
   job_id = params[:job_id].to_i
   commit = params[:commit]
 
