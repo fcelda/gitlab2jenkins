@@ -20,7 +20,7 @@ Clone the repository, install required gems, edit the configuration, and start t
 3. `bundle install`
 4. edit `config.rb` (provide connection to MySQL database, GitLab URL, and Jenkins URL)
 5. `bundle exec foreman start`
-6, `bundle exec ./web.rb`
+6. `bundle exec ./web.rb`
 
 ### Deployment on OpenShift
 
